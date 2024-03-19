@@ -1,5 +1,8 @@
 import logo from "../../assets/logo.svg";
+import * as Dialog from "@radix-ui/react-dialog";
+
 import { HeaderContainer, HeaderContent, NewTransactionButton } from "./styled";
+import { Modal } from "../modal";
 
 export function Header() {
   return (
@@ -7,7 +10,12 @@ export function Header() {
       <HeaderContent>
         <img src={logo} alt="logo ignite" />
 
-        <NewTransactionButton>Nova transação</NewTransactionButton>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <NewTransactionButton>Nova transação</NewTransactionButton>
+          </Dialog.Trigger>
+          <Modal />
+        </Dialog.Root>
       </HeaderContent>
     </HeaderContainer>
   );
