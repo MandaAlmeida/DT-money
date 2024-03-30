@@ -4,8 +4,9 @@ export const SummaryContainer = styled.section`
   width: 100%;
   max-width: 112rem;
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 3.2rem;
 
   margin: 0 auto;
@@ -21,6 +22,7 @@ export const SummaryCard = styled.div<SummaryCardProps>`
   background: ${(props) => props.theme["gray-600"]};
   border-radius: 6px;
   padding: 3.2rem;
+  flex: 1;
 
   header {
     display: flex;

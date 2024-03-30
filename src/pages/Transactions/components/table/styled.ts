@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const TableSection = styled.section`
+  overflow: auto;
+`;
+
 export const TableContainer = styled.table`
   width: 100%;
   border-collapse: separate;

@@ -26,7 +26,7 @@ export function Modal() {
   const createTransactions = useContextSelector(
     TransactionsContext,
     (context) => {
-      return context.createTransactions;
+      return context.createTransaction;
     }
   );
 

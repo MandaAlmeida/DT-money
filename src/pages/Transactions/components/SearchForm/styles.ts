@@ -3,10 +3,14 @@ import styled from "styled-components";
 export const SearchFormContainer = styled.form`
   display: flex;
   gap: 1.6rem;
-  position: relative;
+`;
 
+export const SectionInput = styled.section`
+  position: relative;
+  flex: 1;
   input {
-    flex: 1;
+    width: 100%;
+    height: 7rem;
     border-radius: 6px;
     border: 0;
     background: ${(props) => props.theme["gray-900"]};
@@ -16,6 +20,22 @@ export const SearchFormContainer = styled.form`
     &::placeholder {
       color: ${(props) => props.theme["gray-500"]};
     }
+  }
+`;
+export const ButtonClear = styled.button`
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+
+  svg {
+    color: ${(props) => props.theme["red-300"]};
+  }
+  &:disabled {
+    opacity: 0;
   }
 `;
 
@@ -46,22 +66,5 @@ export const ButtonSubmit = styled.button`
     background: ${(props) => props.theme["green-500"]};
     border-color: ${(props) => props.theme["green-500"]};
     color: ${(props) => props.theme.white};
-  }
-`;
-
-export const ButtonClear = styled.button`
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: 150px;
-  transform: translateY(-50%);
-
-  svg {
-    color: ${(props) => props.theme["red-300"]};
-  }
-  &:disabled {
-    opacity: 0;
   }
 `;

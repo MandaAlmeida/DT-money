@@ -1,11 +1,15 @@
 import { MagnifyingGlass, X } from "phosphor-react";
-import { ButtonClear, ButtonSubmit, SearchFormContainer } from "./styles";
+import {
+  ButtonClear,
+  ButtonSubmit,
+  SearchFormContainer,
+  SectionInput,
+} from "./styles";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TransactionsContext } from "../../../../contexts/TransactionsContext";
 import { useContextSelector } from "use-context-selector";
-import { memo } from "react";
 
 /**
  * Por que um componente renderiza?
@@ -31,7 +35,7 @@ const searchFormSchema = z.object({
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
-function SearchFormComponent() {
+export function SearchForm() {
   const fetchTransactions = useContextSelector(
     TransactionsContext,
     (context) => {
@@ -52,23 +56,25 @@ function SearchFormComponent() {
 
   return (
     <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>
-      <input
-        type="text"
-        placeholder="Busque por transações"
-        {...register("query")}
-      />
-      <ButtonClear
-        type="button"
-        onClick={() => {
-          if (query.length !== 0) {
-            reset({ query: "" });
-            fetchTransactions();
-          }
-        }}
-        disabled={isSubmitDisabled}
-      >
-        <X size={20} weight="bold" />
-      </ButtonClear>
+      <SectionInput>
+        <input
+          type="text"
+          placeholder="Busque por transações"
+          {...register("query")}
+        />
+        <ButtonClear
+          type="button"
+          onClick={() => {
+            if (query.length !== 0) {
+              reset({ query: "" });
+              fetchTransactions();
+            }
+          }}
+          disabled={isSubmitDisabled}
+        >
+          <X size={20} weight="bold" />
+        </ButtonClear>
+      </SectionInput>
       <ButtonSubmit type="submit" disabled={isSubmitDisabled}>
         <MagnifyingGlass size={20} weight="bold" />
         Buscar
@@ -76,5 +82,3 @@ function SearchFormComponent() {
     </SearchFormContainer>
   );
 }
-
-export const SeachForm = memo(SearchFormComponent);
