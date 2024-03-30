@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const SearchFormContainer = styled.form`
   display: flex;
   gap: 1.6rem;
+  position: relative;
 
   input {
     flex: 1;
@@ -16,28 +17,51 @@ export const SearchFormContainer = styled.form`
       color: ${(props) => props.theme["gray-500"]};
     }
   }
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-    background: transparent;
+`;
 
-    border: 1px solid ${(props) => props.theme["green-300"]};
-    border-radius: 6px;
-    padding: 1.6rem;
+export const ButtonSubmit = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  background: transparent;
 
-    color: ${(props) => props.theme["green-300"]};
-    font-weight: bold;
+  border: 1px solid ${(props) => props.theme["green-300"]};
+  border-radius: 6px;
+  padding: 1.6rem;
 
-    cursor: pointer;
+  color: ${(props) => props.theme["green-300"]};
+  font-weight: bold;
 
-    transition: background 0.5s, color 0.5s, border-color 0.5s;
+  cursor: pointer;
 
-    &:hover {
-      background: ${(props) => props.theme["green-500"]};
-      border-color: ${(props) => props.theme["green-500"]};
-      color: ${(props) => props.theme.white};
-    }
+  transition: background 0.5s, color 0.5s, border-color 0.5s;
+
+  &:disabled {
+    opacity: 60%;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
+    background: ${(props) => props.theme["green-500"]};
+    border-color: ${(props) => props.theme["green-500"]};
+    color: ${(props) => props.theme.white};
+  }
+`;
+
+export const ButtonClear = styled.button`
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 150px;
+  transform: translateY(-50%);
+
+  svg {
+    color: ${(props) => props.theme["red-300"]};
+  }
+  &:disabled {
+    opacity: 0;
   }
 `;
