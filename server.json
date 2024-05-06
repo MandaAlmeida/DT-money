@@ -5,7 +5,7 @@
       "description": "Desenvolvimento de site",
       "type": "income",
       "category": "Venda",
-      "price": 14000,
+      "price": 8000,
       "createdAt": "2022-07-29T19:36:44.505Z"
     },
     {
@@ -25,60 +25,12 @@
       "createdAt": "2022-07-29T19:24:44.505Z"
     },
     {
-      "description": "teste",
-      "price": 1,
+      "description": "desenvolvimento de app",
+      "price": 7000,
       "category": "venda",
       "type": "income",
-      "createdAt": "2024-03-29T16:11:45.791Z",
+      "createdAt": "2024-03-30T17:29:26.742Z",
       "id": 4
-    },
-    {
-      "description": "celular",
-      "price": 2000,
-      "category": "compra",
-      "type": "outcome",
-      "createdAt": "2024-03-29T18:32:39.007Z",
-      "id": 5
-    },
-    {
-      "description": "celular",
-      "price": 2000,
-      "category": "compra",
-      "type": "income",
-      "createdAt": "2024-03-29T18:38:15.762Z",
-      "id": 6
-    },
-    {
-      "description": "celular",
-      "price": 2000,
-      "category": "compra",
-      "type": "income",
-      "createdAt": "2024-03-29T18:47:19.421Z",
-      "id": 7
-    },
-    {
-      "description": "celular",
-      "price": 2000,
-      "category": "compra",
-      "type": "income",
-      "createdAt": "2024-03-29T18:48:23.589Z",
-      "id": 8
-    },
-    {
-      "description": "Desenvolvimento web",
-      "price": 1000,
-      "category": "venda",
-      "type": "income",
-      "createdAt": "2024-03-29T18:53:41.701Z",
-      "id": 9
-    },
-    {
-      "description": "Desenvolvimento web",
-      "price": 1500,
-      "category": "venda",
-      "type": "income",
-      "createdAt": "2024-03-29T18:54:27.122Z",
-      "id": 10
     }
   ]
 }
