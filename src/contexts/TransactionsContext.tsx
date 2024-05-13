@@ -1,8 +1,7 @@
 import { ReactNode, useCallback, useEffect, useState } from "react";
-import { api } from "../lib/axios";
 import { createContext } from "use-context-selector";
 
-interface Transaction {
+export interface Transaction {
   id: number;
   description: string;
   type: "income" | "outcome";
@@ -20,8 +19,8 @@ interface CreateTransactionInput {
 
 interface TransactionContextType {
   transactions: Transaction[];
-  fetchTransactions: (query?: string) => Promise<void>;
-  createTransaction: (data: CreateTransactionInput) => Promise<void>;
+  fetchTransactions: (query: string) => void;
+  createTransaction: (data: CreateTransactionInput) => void;
 }
 
 interface TransactionsProps {
@@ -32,36 +31,52 @@ export const TransactionsContext = createContext({} as TransactionContextType);
 
 export function TransactionsProvider({ children }: TransactionsProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const fetchTransactions = useCallback(async (query?: string) => {
-    const response = await api.get("/transactions", {
-      params: {
-        _sort: "createdAt",
-        _order: "desc",
-        q: query,
-      },
-    });
-    setTransactions(response.data);
-  }, []);
-
-  const createTransaction = useCallback(async function createTransactions(
-    data: CreateTransactionInput
-  ) {
-    const { description, price, category, type } = data;
-    const response = await api.post("transactions", {
-      description,
-      price,
-      category,
-      type,
-      createdAt: new Date(),
-    });
-
-    setTransactions((state) => [response.data, ...state]);
-  },
-  []);
 
   useEffect(() => {
-    fetchTransactions();
-  }, [fetchTransactions]);
+    const storedTransactions = localStorage.getItem("transactions");
+    if (storedTransactions) {
+      setTransactions(JSON.parse(storedTransactions));
+    }
+  }, []);
+
+  const saveTransactions = useCallback((data: Transaction[]) => {
+    localStorage.setItem("transactions", JSON.stringify(data));
+  }, []);
+
+  const fetchTransactions = useCallback((query?: string) => {
+    const storedTransactions = localStorage.getItem("transactions");
+    if (storedTransactions) {
+      const transactions: Transaction[] = JSON.parse(storedTransactions);
+      if (query) {
+        const filteredTransactions: Transaction[] = transactions.filter(
+          (transaction) =>
+            transaction.description.toLowerCase().includes(query.toLowerCase())
+        );
+        setTransactions(filteredTransactions);
+      } else {
+        setTransactions(transactions);
+      }
+    }
+  }, []);
+
+  const createTransaction = useCallback(
+    (data: CreateTransactionInput) => {
+      const { description, price, category, type } = data;
+      const newTransaction: Transaction = {
+        id: Date.now(), // Gere um ID único para a transação
+        description,
+        price,
+        category,
+        type,
+        createdAt: new Date().toISOString(),
+      };
+
+      const updatedTransactions = [...transactions, newTransaction];
+      setTransactions(updatedTransactions);
+      saveTransactions(updatedTransactions);
+    },
+    [transactions, saveTransactions]
+  );
 
   return (
     <TransactionsContext.Provider

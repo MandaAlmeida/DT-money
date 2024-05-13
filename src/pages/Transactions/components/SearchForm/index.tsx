@@ -48,7 +48,8 @@ export function SearchForm() {
   });
 
   async function handleSearchTransactions(data: SearchFormInputs) {
-    await fetchTransactions(data.query);
+    const query = data.query.toLowerCase();
+    await fetchTransactions(query); // Passa o parâmetro query para fetchTransactions
   }
 
   const query = watch("query");
@@ -65,10 +66,8 @@ export function SearchForm() {
         <ButtonClear
           type="button"
           onClick={() => {
-            if (query.length !== 0) {
-              reset({ query: "" });
-              fetchTransactions();
-            }
+            reset({ query: "" }); // Reseta o campo de consulta para vazio
+            fetchTransactions(""); // Chama fetchTransactions sem argumentos
           }}
           disabled={isSubmitDisabled}
         >
