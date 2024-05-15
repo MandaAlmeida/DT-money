@@ -20,6 +20,11 @@ export const SectionInput = styled.section`
     &::placeholder {
       color: ${(props) => props.theme["gray-500"]};
     }
+
+    @media (max-width: 768px) {
+      height: 54px;
+      font-size: 1.6rem;
+    }
   }
 `;
 export const ButtonClear = styled.button`
@@ -66,5 +71,11 @@ export const ButtonSubmit = styled.button`
     background: ${(props) => props.theme["green-500"]};
     border-color: ${(props) => props.theme["green-500"]};
     color: ${(props) => props.theme.white};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0;
+    gap: 0;
+    height: 54px;
   }
 `;
